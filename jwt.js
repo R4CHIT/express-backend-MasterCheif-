@@ -7,7 +7,7 @@ const  jwtAuthMiddleWare = (req,res,next)=>{
         message:'Unauth'
     });
     try{
-        const decoded = jwt.verify(token,'hello');
+        const decoded = jwt.verify(token,process.env.secret_key);
         req.user = decoded ;
         next();
     }catch(err){
@@ -17,5 +17,7 @@ const  jwtAuthMiddleWare = (req,res,next)=>{
     }
 }
 const generateJwtToken = (userDetail)=>{
- return jwt.sign(userDetail,"hello")
+ return jwt.sign(userDetail,process.env.secret_key)
 }
+
+module.exports={jwtAuthMiddleWare,generateJwtToken}

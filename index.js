@@ -5,6 +5,7 @@ const app = express();
 require('./db.js')
 const productRoute = require('./routes/productRoute.js')
 const orderRoute = require('./routes/orderRoutes.js')
+const userRoute = require('./routes/userRoute.js')
 const PORT = process.env.PORT;
 const cors = require('cors')
 app.use(express.json());
@@ -16,8 +17,8 @@ app.get('/', (req, res) => {
 
 app.use('/product',productRoute)
 app.use('/order',orderRoute)
+app.use('/auth',userRoute)
 
 app.listen(PORT,()=>{
   console.log('Application running at port:',PORT);
-  
 });

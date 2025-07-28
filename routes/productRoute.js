@@ -41,7 +41,6 @@ route.patch('/',async (req,res)=>{
     res.status(401).json({
       messsage: "Server Error",
     });
-    console.log(error);
     
   }
 })
