@@ -1,7 +1,8 @@
 const express = require("express");
 const route = express.Router();
 const Order = require("../model/orderModel");
-
+const { jwtAuthMiddleWare, generateJwtToken } = require("../jwt");
+const User = require('../model/userModal')
 route.get("/", async (req, res) => {
   try {
     const order = await Order.find()
@@ -13,11 +14,19 @@ route.get("/", async (req, res) => {
   }
 });
 
-route.post("/", async (req, res) => {
+route.post("/", jwtAuthMiddleWare, async (req, res) => {
   try {  
+    const userID = req.user.id;
+    const user = await User.findById(userID)
     const data = req.body;
+    data.contactNumber = user.contactNumber;
+    data.coustomerName= user.username;
+    data.city = user.city;
+    data.street = user.street;
+    data.deliveryDescription =user.deliveryDescription; 
     const order = new Order(data);
     const response = await order.save();
+    console.log(data)
     res.status(200).json({
       message: "Product data Saved o yes",
       data:response

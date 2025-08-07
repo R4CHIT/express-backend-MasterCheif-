@@ -8,12 +8,14 @@ const orderSchema = new mongoose.Schema({
         type:String
     },
     items:{
-        itemName:{
+        type :[
+            {itemName:{
             type:String
         },
         quantity:{
-           type:String 
-        }
+           type:Number 
+        }}
+        ]
     },
     coustomerName:{
         type:String
@@ -27,6 +29,10 @@ const orderSchema = new mongoose.Schema({
     deliveryDescription:{
         type:String
     },
+    status:{
+        type:String,
+        default:"pending",
+    }
 
 })
 

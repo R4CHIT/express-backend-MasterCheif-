@@ -27,8 +27,8 @@ route.post("/", async (req, res) => {
 });
 route.patch('/',async (req,res)=>{
   try {
-    const {id,...updatedData} = req.body;
-    const product = await Product.findByIdAndUpdate(id,updatedData,{
+    const {_id,...updatedData} = req.body;
+    const product = await Product.findByIdAndUpdate(_id,updatedData,{
       new:true,
     })
     
