@@ -9,7 +9,11 @@ const orderSchema = new mongoose.Schema({
     },
     items:{
         type :[
-            {itemName:{
+            {
+            id:{
+                type:String
+            },
+            itemName:{
             type:String
         },
         quantity:{
