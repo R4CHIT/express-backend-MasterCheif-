@@ -6,7 +6,7 @@ const Product =require('../model/productModel')
 const User = require('../model/userModal')
 route.get("/", async (req, res) => {
   try {
-    const order = await Order.find()
+    const order = await Order.find().sort({_id : -1})
     res.status(200).json({messsage:"Welcome",data:order})
   } catch (error) {
     res.status(401).json({
